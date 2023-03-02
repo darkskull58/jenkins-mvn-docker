@@ -1,7 +1,7 @@
 node ('maven') {
     
       stage ('Code from SCM') {
-        git credentialsId: 'f2a21285-619c-43bf-9652-5fa30c27c559', url: 'https://github.com/vishalrs18/webapp_jenkins'
+        git credentialsId: 'f2a21285-619c-43bf-9652-5fa30c27c559', url: 'https://github.com/darkskull58/jenkins-mvn-docker'
       }
       stage ('Build') {
         sh '''mvn clean install'''
