@@ -1,0 +1,16 @@
+pipeline{     agent any     stages {         stage('Build') {             steps {
+                sh 'docker build -t sourishbasu/soumvn1 .'
+            }
+        }         stage('Login') {             steps {
+                sh 'docker login -u sourishbasu -p newpass@'
+            }
+        }         stage('Push') {             steps {
+                sh 'docker push sourishbasu/soumvn1'
+            }
+        }
+        stage('deploy to Kube'){
+            steps {
+                sh 'kubectl apply - f'
+            }
+        }
+    }  }
