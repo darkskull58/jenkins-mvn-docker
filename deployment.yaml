@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: aks
-        image: web_app1
+        image: sourishbasu/soumvn1:latest
         ports:
         - containerPort: 8080
