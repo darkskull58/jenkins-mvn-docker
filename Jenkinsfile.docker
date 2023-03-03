@@ -6,9 +6,17 @@ node ('maven') {
       stage ('Build') {
         sh '''mvn clean install'''
       }
-      stage ('deploy to docker container')
+ #     stage ('deploy to docker container')
+ #   {
+ #       sh '''docker build -t app:1 .
+ #       docker run -d -p 8080:8080 --name web_app1 app:1'''
+ #   }
+      stage ('docker')
+        withDockerRegistry(credentialsId: 'docker', url: 'https://hub.docker.com/repository/docker/vishal18doc/sample')
     {
-        sh '''docker build -t app:1 .
-        docker run -d -p 8080:8080 --name web_app1 app:1'''
+        sh 'docker build -t app:1 .'
+        sh "docker tag app:1 sourishMvnDock/sample1"
+        sh "docker login -u sourishbasu -p Corridor58@"
+        sh "docker push sourishMvnDock/sample1"
     }
 }
